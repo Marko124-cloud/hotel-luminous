@@ -62,24 +62,42 @@
     .hero {
       height: 100vh;
       display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
+      justify-content: flex-end;
+      align-items: center;
       text-align: center;
       position: relative;
       background:
-        linear-gradient(135deg, rgba(26,3,32,0.88) 0%, rgba(131,25,234,0.25) 50%, rgba(26,3,32,0.92) 100%),
         url('ChatGPT Image 8. Mai 2026, 13_32_53.png') center/cover no-repeat;
       overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 60px,
-        rgba(250,12,241,0.03) 60px,
-        rgba(250,12,241,0.03) 61px
+      background: linear-gradient(
+        to bottom,
+        rgba(26,3,32,0.1) 0%,
+        rgba(26,3,32,0.2) 50%,
+        rgba(26,3,32,0.95) 100%
       );
+    }
+    .hero-name {
+      position: absolute;
+      top: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 2;
+      white-space: nowrap;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold-light);
     }
     .hero-badge {
       font-size: 0.65rem;
@@ -92,13 +110,14 @@
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(4rem, 12vw, 10rem);
       font-weight: 300;
-      line-height: 1.05;
+      line-height: 1.0;
       color: var(--white);
       margin-bottom: 0.3rem;
       opacity: 0;
       animation: fadeUp 1s ease forwards 0.5s;
+      letter-spacing: 0.05em;
     }
     .hero h1 em {
       font-style: italic;
@@ -373,21 +392,20 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo">Hotel <span>Luminous</span></div>
     <ul>
       <li><a href="#ueber">Über uns</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
-    <a href="#buchen" class="btn-primary" style="font-size:0.65rem; padding: 0.6rem 1.5rem;">Jetzt buchen</a>
+    <button class="d21-trigger-ibe btn-primary" style="font-size:0.65rem; padding: 0.6rem 1.5rem; cursor:pointer; border:1px solid var(--gold); background:transparent; color:var(--gold-light); letter-spacing:0.3em; text-transform:uppercase; font-family:'Montserrat',sans-serif; transition: background 0.4s, color 0.4s;">Jetzt buchen</button>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">⸻ Willkommen im ⸻</div>
-    <h1>Hotel<br><em>Luminous</em></h1>
-    <div class="hero-sub">Luxus · Eleganz · Unvergessliche Momente</div>
-    <div class="hero-divider"></div>
-    <div class="d21-quickbook" d21-widget-uuid="b51945c3-3459-014f-f31b-d01aaec32663"></div>
+    <div style="position:relative; z-index:2; width:100%; padding-bottom: 3rem;">
+      <div class="hero-sub">Luxus · Eleganz · Unvergessliche Momente</div>
+      <div class="hero-divider"></div>
+      <div class="d21-quickbook" d21-widget-uuid="b51945c3-3459-014f-f31b-d01aaec32663"></div>
+    </div>
   </section>
 
   <!-- QUICKBOOK SECTION (anchor) -->
@@ -396,7 +414,7 @@
   <!-- ABOUT -->
   <section id="ueber">
     <div class="about-img">
-      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80" alt="Hotel Belvedere Aureum" />
+      <img src="ChatGPT Image 8. Mai 2026, 14_59_55.png" alt="Hotel Luminous Lobby" />
     </div>
     <div class="about-text">
       <div class="section-label">Über uns</div>
