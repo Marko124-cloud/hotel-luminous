@@ -67,7 +67,7 @@
       position: relative;
       background:
         linear-gradient(135deg, rgba(26,3,32,0.88) 0%, rgba(131,25,234,0.25) 50%, rgba(26,3,32,0.92) 100%),
-        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1600&q=80') center/cover no-repeat;
+        url('ChatGPT Image 8. Mai 2026, 13_32_53.png') center/cover no-repeat;
       overflow: hidden;
     }
     .hero::before {
@@ -373,6 +373,7 @@
   <nav>
     <div class="logo">Hotel <span>Luminous</span></div>
     <ul>
+      <li><a href="#buchen">Buchen</a></li>
       <li><a href="#ueber">Über uns</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -384,7 +385,16 @@
     <h1>Hotel<br><em>Luminous</em></h1>
     <div class="hero-sub">Luxus · Eleganz · Unvergessliche Momente</div>
     <div class="hero-divider"></div>
-    <a href="#ueber" class="btn-primary">Mehr erfahren</a>
+    <a href="#buchen" class="btn-primary">Jetzt buchen</a>
+  </section>
+
+  <!-- QUICKBOOK / IBE -->
+  <section id="buchen" style="background: var(--navy-mid); padding: 5rem 4rem; border-top: 1px solid rgba(250,12,241,0.15); border-bottom: 1px solid rgba(250,12,241,0.15);">
+    <div class="section-label">Reservierung</div>
+    <h2 class="section-title">Jetzt Ihren Aufenthalt buchen</h2>
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="d21-quickbook"></div>
+    </div>
   </section>
 
   <!-- ABOUT -->
@@ -422,6 +432,9 @@
     <div class="gold-line"></div>
     <p>© 2026 Hotel Luminous · Demo-Website · Powered by DIRS21</p>
   </footer>
+
+  <!-- DIRS21 IBE SKRIPT -->
+  <script src="https://js-sdk.dirs21.de/2e723dfc-87a7-939b-5838-559dd89f5405" async></script>
 
 </body>
 </html>
