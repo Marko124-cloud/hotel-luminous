@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Luminous</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #1a0320;
+      --navy-mid: #220430;
+      --navy-light: #2e0540;
+      --gold: #9310da;
+      --gold-light: #fa0cf1;
+      --gold-pale: #fdfafe;
+      --cream: #fdfafe;
+      --white: #ffffff;
+      --accent: #8319ea;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 4rem;
+      background: linear-gradient(to bottom, rgba(10,22,40,0.95), transparent);
+      backdrop-filter: blur(4px);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--gold-light);
+    }
+    .logo span { font-style: italic; color: var(--gold-pale); }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul li a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    nav ul li a:hover { opacity: 1; color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(26,3,32,0.88) 0%, rgba(131,25,234,0.25) 50%, rgba(26,3,32,0.92) 100%),
+        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1600&q=80') center/cover no-repeat;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 60px,
+        rgba(250,12,241,0.03) 60px,
+        rgba(250,12,241,0.03) 61px
+      );
+    }
+    .hero-badge {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.3s;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.5s;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.7s;
+    }
+    .hero-divider {
+      width: 80px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.9s;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 3rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      transition: background 0.4s, color 0.4s;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.1s;
+    }
+    .btn-primary:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ── BOOKING WIDGET ── */
+    #buchen {
+      background: var(--navy-mid);
+      padding: 5rem 4rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+    .booking-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 3rem;
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 1.5rem;
+      align-items: end;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: var(--cream);
+      padding: 0.85rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--gold);
+    }
+    .form-group select option { background: var(--navy-mid); }
+    .btn-book {
+      background: linear-gradient(135deg, var(--accent), var(--gold-light));
+      color: var(--white);
+      border: none;
+      padding: 0.85rem 2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .btn-book:hover { background: linear-gradient(135deg, var(--gold-light), var(--accent)); }
+    .ibe-note {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: rgba(201,168,76,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── ROOMS ── */
+    #zimmer {
+      padding: 6rem 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .room-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .room-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+      filter: brightness(0.85);
+    }
+    .room-card:hover img { transform: scale(1.06); filter: brightness(0.7); }
+    .room-info {
+      padding: 1.5rem;
+      background: var(--navy-mid);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-top: none;
+    }
+    .room-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .room-info p {
+      font-size: 0.75rem;
+      color: rgba(250,246,239,0.6);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .room-price {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+    .room-price span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--gold-light);
+    }
+
+    /* ── ABOUT ── */
+    #ueber {
+      padding: 6rem 4rem;
+      background: var(--navy-mid);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-img {
+      position: relative;
+    }
+    .about-img img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9);
+    }
+    .about-img::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      right: 20px; bottom: 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+      z-index: 0;
+    }
+    .about-img img { position: relative; z-index: 1; }
+    .about-text .section-label { text-align: left; }
+    .about-text .section-title { text-align: left; }
+    .about-text p {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: rgba(250,246,239,0.7);
+      margin-bottom: 1.5rem;
+    }
+    .about-stats {
+      display: flex; gap: 3rem; margin-top: 2.5rem;
+    }
+    .stat-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold-light);
+    }
+    .stat-item p {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,246,239,0.5);
+      margin: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d0115;
+      padding: 4rem;
+      text-align: center;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    footer .logo { display: block; margin-bottom: 1.5rem; font-size: 1.3rem; }
+    footer p {
+      font-size: 0.7rem;
+      color: rgba(250,246,239,0.35);
+      letter-spacing: 0.1em;
+    }
+    footer .gold-line {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 1.5rem auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      nav ul { gap: 1.5rem; }
+      #buchen, #zimmer, #ueber, footer { padding: 4rem 2rem; }
+      .booking-grid { grid-template-columns: 1fr 1fr; }
+      .rooms-grid { grid-template-columns: 1fr; }
+      #ueber { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Hotel <span>Luminous</span></div>
+    <ul>
+      <li><a href="#ueber">Über uns</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">⸻ Willkommen im ⸻</div>
+    <h1>Hotel<br><em>Luminous</em></h1>
+    <div class="hero-sub">Luxus · Eleganz · Unvergessliche Momente</div>
+    <div class="hero-divider"></div>
+    <a href="#ueber" class="btn-primary">Mehr erfahren</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="ueber">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80" alt="Hotel Belvedere Aureum" />
+    </div>
+    <div class="about-text">
+      <div class="section-label">Über uns</div>
+      <h2 class="section-title">Eine Legende der Gastfreundschaft</h2>
+      <p>Das Hotel Luminous steht seit Jahrzehnten für unvergleichliche Eleganz und diskrete Luxushotellerie. In unserem Haus verbindet sich klassische Grandhotel-Tradition mit modernem Komfort auf höchstem Niveau.</p>
+      <p>Jedes Detail ist sorgfältig ausgewählt – von den handgefertigten Möbeln bis hin zum personalisierten Service, der Sie als Gast in den Mittelpunkt stellt.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <h4>48</h4>
+          <p>Zimmer & Suiten</p>
+        </div>
+        <div class="stat-item">
+          <h4>5★</h4>
+          <p>Auszeichnung</p>
+        </div>
+        <div class="stat-item">
+          <h4>25+</h4>
+          <p>Jahre Tradition</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="kontakt">
+    <span class="logo">Hotel <span style="font-style:italic;color:var(--gold-pale)">Luminous</span></span>
+    <div class="gold-line"></div>
+    <p>Musterstraße 1 · 04275 Leipzig · marko.dietrich@dirs21.de · +49 (0) 7153-9250-0</p>
+    <div class="gold-line"></div>
+    <p>© 2026 Hotel Luminous · Demo-Website · Powered by DIRS21</p>
+  </footer>
+
+</body>
+</html>
