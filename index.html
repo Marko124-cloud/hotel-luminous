@@ -366,6 +366,8 @@
       #ueber { grid-template-columns: 1fr; gap: 3rem; }
     }
   </style>
+  <!-- DIRS21 IBE SKRIPT -->
+  <script src="https://js-sdk.dirs21.de/2e723dfc-87a7-939b-5838-559dd89f5405" type="text/javascript" async></script>
 </head>
 <body>
 
@@ -373,10 +375,10 @@
   <nav>
     <div class="logo">Hotel <span>Luminous</span></div>
     <ul>
-      <li><a href="#buchen">Buchen</a></li>
       <li><a href="#ueber">Über uns</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
+    <a href="#buchen" class="btn-primary" style="font-size:0.65rem; padding: 0.6rem 1.5rem;">Jetzt buchen</a>
   </nav>
 
   <!-- HERO -->
@@ -385,17 +387,11 @@
     <h1>Hotel<br><em>Luminous</em></h1>
     <div class="hero-sub">Luxus · Eleganz · Unvergessliche Momente</div>
     <div class="hero-divider"></div>
-    <a href="#buchen" class="btn-primary">Jetzt buchen</a>
+    <div class="d21-quickbook" d21-widget-uuid="b51945c3-3459-014f-f31b-d01aaec32663"></div>
   </section>
 
-  <!-- QUICKBOOK / IBE -->
-  <section id="buchen" style="background: var(--navy-mid); padding: 5rem 4rem; border-top: 1px solid rgba(250,12,241,0.15); border-bottom: 1px solid rgba(250,12,241,0.15);">
-    <div class="section-label">Reservierung</div>
-    <h2 class="section-title">Jetzt Ihren Aufenthalt buchen</h2>
-    <div style="max-width: 900px; margin: 0 auto;">
-      <div class="d21-quickbook"></div>
-    </div>
-  </section>
+  <!-- QUICKBOOK SECTION (anchor) -->
+  <div id="buchen" style="scroll-margin-top: 80px;"></div>
 
   <!-- ABOUT -->
   <section id="ueber">
@@ -433,8 +429,6 @@
     <p>© 2026 Hotel Luminous · Demo-Website · Powered by DIRS21</p>
   </footer>
 
-  <!-- DIRS21 IBE SKRIPT -->
-  <script src="https://js-sdk.dirs21.de/2e723dfc-87a7-939b-5838-559dd89f5405" async></script>
 
 </body>
 </html>
