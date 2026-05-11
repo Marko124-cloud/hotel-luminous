@@ -369,6 +369,24 @@
       margin: 1.5rem auto;
     }
 
+    /* ── TEST BANNER ── */
+    .test-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, var(--accent), var(--gold-light));
+      color: var(--white);
+      text-align: center;
+      padding: 0.6rem 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+    .test-banner span {
+      opacity: 0.85;
+      font-weight: 300;
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -395,6 +413,7 @@
     <ul>
       <li><a href="#zimmer">Zimmer</a></li>
       <li><a href="#arrangements">Arrangements</a></li>
+      <li><a href="#gutscheine">Gutscheine</a></li>
       <li><a href="#ueber">Über uns</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -427,6 +446,15 @@
     <h2 class="section-title">Unsere Arrangements & Pauschalen</h2>
     <div style="max-width: 1200px; margin: 0 auto;">
       <div class="d21-packageList" d21-widget-uuid="c06e7a4d-d952-c416-eeb8-552d816c9cca"></div>
+    </div>
+  </section>
+
+  <!-- GUTSCHEINE -->
+  <section id="gutscheine" style="padding: 6rem 4rem; background: var(--navy); border-top: 1px solid rgba(250,12,241,0.15);">
+    <div class="section-label">Geschenke</div>
+    <h2 class="section-title">Gutscheine & Geschenkideen</h2>
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="d21-voucherShop" d21-widget-uuid="fb2a56fa-7d1c-c70c-5302-e43bdd532acc"></div>
     </div>
   </section>
 
@@ -466,6 +494,10 @@
     <p>© 2026 Hotel Luminous · Demo-Website · Powered by DIRS21</p>
   </footer>
 
+  <!-- TEST BANNER -->
+  <div class="test-banner">
+    ⚠️ TESTWEBSITE – <span>Diese Website dient ausschließlich zu Demonstrationszwecken. Es können keine realen Buchungen über diese Seite vorgenommen werden.</span>
+  </div>
 
 </body>
 </html>
