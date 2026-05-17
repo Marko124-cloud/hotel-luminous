@@ -58,6 +58,49 @@
     }
     nav ul li a:hover { opacity: 1; color: var(--gold-light); }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26,3,32,0.98);
+      z-index: 150;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 1.2rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .mobile-menu a:hover { opacity: 1; color: var(--gold-light); }
+
     /* ── HERO ── */
     .hero {
       height: 100vh;
@@ -394,23 +437,34 @@
     }
 
     /* ── RESPONSIVE ── */
+    * { box-sizing: border-box; }
+    body { overflow-x: hidden; }
+
     @media (max-width: 900px) {
-      nav { padding: 1rem; flex-wrap: wrap; justify-content: center; }
-      nav ul { gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
-      nav ul li a { font-size: 0.6rem; letter-spacing: 0.1em; }
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .hamburger { display: flex; }
       #buchen, #zimmer, #ueber, footer { padding: 3rem 1.5rem; }
       #ueber { grid-template-columns: 1fr; gap: 2rem; }
-      .hero { background-size: cover; background-position: center; }
       #zimmer, #arrangements, #gutscheine, #kalender { padding: 3rem 1rem; }
       .section-title { font-size: 1.8rem; }
+      .d21-roomList, .d21-packageList, .d21-voucherShop, .d21-availabilityCalendar, .d21-quickbook {
+        max-width: 100% !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+      }
+      section > div { max-width: 100% !important; overflow-x: hidden; }
     }
 
     @media (max-width: 480px) {
-      nav ul { gap: 0.5rem; }
-      nav ul li a { font-size: 0.55rem; letter-spacing: 0.05em; }
-      .hero { background-size: cover; }
+      .hero { background-size: cover; background-position: center; }
       .hero-sub { font-size: 0.65rem; letter-spacing: 0.15em; }
       .section-title { font-size: 1.5rem; }
+      iframe, .d21-roomList, .d21-packageList, .d21-voucherShop, .d21-availabilityCalendar {
+        max-width: 100vw !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+      }
     }
   </style>
   <!-- DIRS21 IBE SKRIPT -->
@@ -428,7 +482,27 @@
       <li><a href="#ueber">Über uns</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#zimmer" onclick="toggleMenu()">Zimmer</a>
+    <a href="#arrangements" onclick="toggleMenu()">Arrangements</a>
+    <a href="#gutscheine" onclick="toggleMenu()">Gutscheine</a>
+    <a href="#kalender" onclick="toggleMenu()">Verfügbarkeit</a>
+    <a href="#ueber" onclick="toggleMenu()">Über uns</a>
+    <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('active');
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+  </script>
 
   <!-- HERO -->
   <section class="hero">
