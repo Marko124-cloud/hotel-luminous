@@ -395,12 +395,22 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      nav ul { gap: 1.5rem; }
-      #buchen, #zimmer, #ueber, footer { padding: 4rem 2rem; }
-      .booking-grid { grid-template-columns: 1fr 1fr; }
-      .rooms-grid { grid-template-columns: 1fr; }
-      #ueber { grid-template-columns: 1fr; gap: 3rem; }
+      nav { padding: 1rem; flex-wrap: wrap; justify-content: center; }
+      nav ul { gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
+      nav ul li a { font-size: 0.6rem; letter-spacing: 0.1em; }
+      #buchen, #zimmer, #ueber, footer { padding: 3rem 1.5rem; }
+      #ueber { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { background-size: cover; background-position: center; }
+      #zimmer, #arrangements, #gutscheine, #kalender { padding: 3rem 1rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav ul { gap: 0.5rem; }
+      nav ul li a { font-size: 0.55rem; letter-spacing: 0.05em; }
+      .hero { background-size: cover; }
+      .hero-sub { font-size: 0.65rem; letter-spacing: 0.15em; }
+      .section-title { font-size: 1.5rem; }
     }
   </style>
   <!-- DIRS21 IBE SKRIPT -->
