@@ -9,13 +9,23 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
-    /* Prevent our CSS from breaking DIRS21 widget internals */
-    .d21-roomList *, .d21-packageList *, .d21-voucherShop *,
-    .d21-availabilityCalendar *, .d21-quickbook * {
+    /* DIRS21 widgets use Tailwind with tw-d21- prefix and need content-box */
+    [class*="tw-d21-"] {
       box-sizing: content-box !important;
+    }
+    [class*="tw-d21-"] * {
+      box-sizing: content-box !important;
+    }
+    /* Allow widget containers to overflow naturally for sliders */
+    .d21-roomList, .d21-packageList, .d21-voucherShop,
+    .d21-availabilityCalendar, .d21-quickbook {
       overflow: visible !important;
-      max-width: none !important;
-      font-family: inherit;
+    }
+    /* Abstand zwischen den Widget-Karten */
+    .d21-packageList .d21-v-stack > *,
+    .d21-roomList .d21-v-stack > *,
+    .d21-voucherShop .d21-v-stack > * {
+      margin-bottom: 1.5rem !important;
     }
 
     :root {
