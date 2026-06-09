@@ -9,6 +9,15 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
+    /* Prevent our CSS from breaking DIRS21 widget internals */
+    .d21-roomList *, .d21-packageList *, .d21-voucherShop *,
+    .d21-availabilityCalendar *, .d21-quickbook * {
+      box-sizing: content-box !important;
+      overflow: visible !important;
+      max-width: none !important;
+      font-family: inherit;
+    }
+
     :root {
       --black: #0d0d0d;
       --dark: #1a1a1a;
@@ -203,7 +212,7 @@
     /* ── WIDGET SECTIONS ── */
     .widget-section {
       padding: 7rem 5rem;
-      overflow: hidden;
+      overflow: visible;
     }
     .widget-section:nth-child(even) { background: var(--light); }
     .widget-section:nth-child(odd) { background: var(--cream); }
@@ -211,13 +220,6 @@
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
-      overflow: hidden;
-    }
-    .d21-roomList, .d21-packageList, .d21-voucherShop,
-    .d21-availabilityCalendar, .d21-quickbook {
-      max-width: 100% !important;
-      width: 100% !important;
-      overflow-x: hidden !important;
     }
 
     /* ── ABOUT ── */
@@ -328,7 +330,8 @@
       nav ul { display: none; }
       .hamburger { display: flex; }
       .hero { padding: 0 2rem 4rem; }
-      .section, .section-full, .widget-section { padding: 4rem 1.5rem; }
+      .section, .section-full { padding: 4rem 1.5rem; }
+      .widget-section { padding: 4rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-img-wrap::after { display: none; }
       .about-img-wrap img { height: 350px; }
