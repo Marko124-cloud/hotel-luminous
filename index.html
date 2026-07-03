@@ -362,6 +362,33 @@
   </style>
   <!-- DIRS21 IBE SKRIPT -->
   <script src="https://js-sdk.dirs21.de/2e723dfc-87a7-939b-5838-559dd89f5405" type="text/javascript" async></script>
+  <script>
+    // Fix DIRS21 slider by injecting CSS into Shadow DOM after widgets load
+    function fixSliders() {
+      const widgets = document.querySelectorAll('.d21-packageList, .d21-roomList, .d21-voucherShop');
+      widgets.forEach(widget => {
+        const shadow = widget.shadowRoot;
+        if (shadow && !shadow._sliderFixed) {
+          const style = document.createElement('style');
+          style.textContent = `
+            .d21-view.d21-slideshow { overflow: hidden !important; }
+            .d21-slides { overflow: hidden !important; }
+          `;
+          shadow.appendChild(style);
+          shadow._sliderFixed = true;
+        }
+      });
+    }
+    // Run after DOM is ready and after widgets load
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(fixSliders, 1000);
+      setTimeout(fixSliders, 3000);
+      setTimeout(fixSliders, 5000);
+    });
+    // Also observe for dynamic widget loading
+    const observer = new MutationObserver(() => fixSliders());
+    observer.observe(document.body, { childList: true, subtree: true });
+  </script>
 </head>
 <body>
 
