@@ -21,6 +21,13 @@
     .d21-availabilityCalendar, .d21-quickbook {
       overflow: visible !important;
     }
+    /* Fix slider: container must clip overflow but inner slider track can scroll */
+    [class*="tw-d21-overflow-hidden"] {
+      overflow: hidden !important;
+    }
+    [class*="tw-d21-overflow-x-hidden"] {
+      overflow-x: hidden !important;
+    }
     /* Abstand zwischen den Widget-Karten */
     .d21-packageList .d21-v-stack > *,
     .d21-roomList .d21-v-stack > *,
