@@ -9,32 +9,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
-    /* DIRS21 widgets use Tailwind with tw-d21- prefix and need content-box */
-    [class*="tw-d21-"] {
-      box-sizing: content-box !important;
-    }
-    [class*="tw-d21-"] * {
-      box-sizing: content-box !important;
-    }
-    /* Allow widget containers to overflow naturally for sliders */
-    .d21-roomList, .d21-packageList, .d21-voucherShop,
-    .d21-availabilityCalendar, .d21-quickbook {
-      overflow: visible !important;
-    }
-    /* Fix slider: container must clip overflow but inner slider track can scroll */
-    [class*="tw-d21-overflow-hidden"] {
-      overflow: hidden !important;
-    }
-    [class*="tw-d21-overflow-x-hidden"] {
-      overflow-x: hidden !important;
-    }
-    /* Abstand zwischen den Widget-Karten */
-    .d21-packageList .d21-v-stack > *,
-    .d21-roomList .d21-v-stack > *,
-    .d21-voucherShop .d21-v-stack > * {
-      margin-bottom: 1.5rem !important;
-    }
-
     :root {
       --black: #111111;
       --dark: #1c1c1c;
