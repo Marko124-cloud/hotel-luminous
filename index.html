@@ -9,6 +9,32 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
+    /* DIRS21 widgets use Tailwind with tw-d21- prefix and need content-box */
+    [class*="tw-d21-"] {
+      box-sizing: content-box !important;
+    }
+    [class*="tw-d21-"] * {
+      box-sizing: content-box !important;
+    }
+    /* Allow widget containers to overflow naturally for sliders */
+    .d21-roomList, .d21-packageList, .d21-voucherShop,
+    .d21-availabilityCalendar, .d21-quickbook {
+      overflow: visible !important;
+    }
+    /* Fix slider: container must clip overflow but inner slider track can scroll */
+    [class*="tw-d21-overflow-hidden"] {
+      overflow: hidden !important;
+    }
+    [class*="tw-d21-overflow-x-hidden"] {
+      overflow-x: hidden !important;
+    }
+    /* Abstand zwischen den Widget-Karten */
+    .d21-packageList .d21-v-stack > *,
+    .d21-roomList .d21-v-stack > *,
+    .d21-voucherShop .d21-v-stack > * {
+      margin-bottom: 1.5rem !important;
+    }
+
     :root {
       --black: #111111;
       --dark: #1c1c1c;
@@ -416,6 +442,37 @@
         }
       });
 
+      // Fix quickbook: DIRS21 sets overflow:hidden on the widget itself - force it visible
+      const qb = document.querySelector('.d21-quickbook');
+      if (qb) {
+        qb.style.setProperty('overflow', 'visible', 'important');
+        qb.style.setProperty('overflow-y', 'visible', 'important');
+        qb.style.setProperty('position', 'relative', 'important');
+        qb.style.setProperty('z-index', '500', 'important');
+
+        // Also fix the shadow DOM calendar grid inside quickbook
+        const qbShadow = qb.shadowRoot;
+        if (qbShadow && !qbShadow._qbFixed) {
+          const style = document.createElement('style');
+          style.textContent = `
+            * { box-sizing: border-box !important; }
+            .d21-container-view {
+              grid-template-columns: repeat(7, 1fr) !important;
+              width: 100% !important;
+            }
+            .d21-view.d21-slideshow { overflow: hidden !important; }
+            :host { overflow: visible !important; background: transparent !important; }
+            .d21-widget-container { overflow: visible !important; background: transparent !important; }
+            [class*="dropdown"], [class*="calendar"], [class*="picker"] {
+              overflow: visible !important;
+              z-index: 9999 !important;
+            }
+          `;
+          qbShadow.appendChild(style);
+          qbShadow._qbFixed = true;
+        }
+      }
+
       // Fix availability calendar grid layout
       const calWidget = document.querySelector('.d21-availabilityCalendar');
       const calShadow = calWidget?.shadowRoot;
@@ -436,9 +493,13 @@
     }
     // Run after DOM is ready and after widgets load
     document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(fixSliders, 500);
       setTimeout(fixSliders, 1000);
+      setTimeout(fixSliders, 2000);
       setTimeout(fixSliders, 3000);
       setTimeout(fixSliders, 5000);
+      // Keep fixing every second in case DIRS21 resets it
+      setInterval(fixSliders, 1000);
     });
     // Also observe for dynamic widget loading
     const observer = new MutationObserver(() => fixSliders());
@@ -454,6 +515,7 @@
       <li><a href="#zimmer">Zimmer</a></li>
       <li><a href="#arrangements">Arrangements</a></li>
       <li><a href="#gutscheine">Gutscheine</a></li>
+      <li><a href="#gaestebindung">Gästebindung</a></li>
       <li><a href="#ueber">Über uns</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -467,6 +529,7 @@
     <a href="#zimmer" onclick="toggleMenu()">Zimmer</a>
     <a href="#arrangements" onclick="toggleMenu()">Arrangements</a>
     <a href="#gutscheine" onclick="toggleMenu()">Gutscheine</a>
+    <a href="#gaestebindung" onclick="toggleMenu()">Gästebindung</a>
     <a href="#ueber" onclick="toggleMenu()">Über uns</a>
     <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
   </div>
@@ -525,6 +588,16 @@
       <div class="divider"></div>
       <h2 class="section-title">Gutscheine & <em>Geschenkideen</em></h2>
       <div class="d21-voucherShop" d21-widget-uuid="fb2a56fa-7d1c-c70c-5302-e43bdd532acc"></div>
+    </div>
+  </div>
+
+  <!-- GAESTEBINDUNG -->
+  <div class="widget-section" id="gaestebindung">
+    <div class="widget-inner">
+      <div class="section-tag">Treue</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Gäste<em>bindung</em></h2>
+      <div class="d21-loyaltyProgram" d21-widget-uuid="96f6707b-4f37-684e-956f-d5fa3305c024"></div>
     </div>
   </div>
 
