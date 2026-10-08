@@ -30,6 +30,18 @@
     }
     /* Widget card spacing managed by DIRS21 internally */
 
+    /* Fix quickbook trigger button vertical alignment */
+    .d21-quickbook [class*="trigger-popover-button"] {
+      justify-content: center !important;
+      padding-top: 8px !important;
+      padding-bottom: 8px !important;
+    }
+    /* Fix search button alignment */
+    .d21-quickbook [class*="d21-button"][class*="d21-primary"] {
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
     :root {
       --black: #111111;
       --dark: #1c1c1c;
@@ -547,7 +559,7 @@
   </section>
 
   <!-- QUICKBOOK -->
-  <div style="background: var(--black); padding: 5rem 5rem 8rem; border-bottom: 1px solid rgba(154,124,74,0.2); position: relative; z-index: 500; overflow: visible;">
+  <div style="background: var(--black); padding: 2rem 5rem 6rem; border-bottom: 1px solid rgba(154,124,74,0.2); position: relative; z-index: 500; overflow: visible;">
     <div style="max-width: 1200px; margin: 0 auto; overflow: visible; position: relative;">
       <div class="section-tag" style="text-align:center;">Reservierung</div>
       <div class="divider" style="margin: 1rem auto 2rem;"></div>
