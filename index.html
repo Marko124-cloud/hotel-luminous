@@ -31,13 +31,17 @@
     /* Widget card spacing managed by DIRS21 internally */
 
     /* Fix quickbook trigger button vertical alignment */
-    .d21-quickbook [class*="trigger-popover-button"] {
+    .d21-quickbook [class*="trigger-popover-button"],
+    .d21-quickbook .d21-trigger-popover-button,
+    div.d21-quickbook [class*="trigger-popover-button"] {
       justify-content: center !important;
       padding-top: 8px !important;
       padding-bottom: 8px !important;
+      box-sizing: border-box !important;
     }
     /* Fix search button alignment */
-    .d21-quickbook [class*="d21-button"][class*="d21-primary"] {
+    .d21-quickbook [class*="d21-button"][class*="d21-primary"],
+    div.d21-quickbook .d21-button.d21-primary {
       align-items: center !important;
       justify-content: center !important;
     }
