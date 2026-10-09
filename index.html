@@ -39,11 +39,17 @@
       padding-bottom: 8px !important;
       box-sizing: border-box !important;
     }
-    /* Fix search button alignment */
+    /* Fix search button height and alignment to fit inside quickbook box */
     .d21-quickbook [class*="d21-button"][class*="d21-primary"],
     div.d21-quickbook .d21-button.d21-primary {
       align-items: center !important;
       justify-content: center !important;
+      background-color: var(--gold) !important;
+      border-radius: 4px !important;
+      height: 44px !important;
+      max-height: 44px !important;
+      align-self: center !important;
+      margin: auto 0 !important;
     }
 
     :root {
